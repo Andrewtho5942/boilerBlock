@@ -4,10 +4,12 @@ var storage = chrome.storage.local;
 var count = 0;
 
 function updateForms() {
-	for (var i = 0; i < elementArray.size; i++) {
-		elementArray[i].remove();
-		elementArray[i] = null;
+	for (var i = 0; i < elementArray.length; i++) {
+		var remove = document.getElementById("redirect" + i);
+		remove.remove();
+		//elementArray[i] = null;
 	}
+	elementArray = [];
 	for (var i = 0; i < count; i++) {
 		var element = document.createElement("div");
 
@@ -19,6 +21,20 @@ function updateForms() {
 		var deleteBtn = document.createElement("button");
 		var editBtn = document.createElement("button");
 		var titleText = document.createElement("h3");
+
+		deleteBtn.setAttribute("id", "delete" + i);
+
+		deleteBtn.addEventListener('click', function() {
+			var index = this.id.substring(6);
+			redirects.splice(index, 1);
+			count--;
+			var remove = document.getElementById("redirect" + index);
+			remove.remove();
+			elementArray.splice(index, 1);
+			//update local storage
+			storage.set({['redirects'] : redirects});
+			updateForms();
+		})
 
 		source.textContent = "Source URL: " + redirects[i].title.sourceURL;
 		whitelist.textContent = "Whitelist: " + redirects[i].title.whitelist;
@@ -73,6 +89,8 @@ function createRedirect() {
 	
 	count++;
 	updateForms();
+	//update local storage
+	storage.set({['redirects'] : redirects});
 }
 
 function cancelEdit() {
@@ -80,7 +98,7 @@ function cancelEdit() {
 }
 
 
-document.getElementById("new").addEventListener('click', createRedirect);
+document.getElementById("new").addEventListener('click', createRedirect);	
 
 //Redirect class
 class Redirect {
@@ -90,7 +108,6 @@ class Redirect {
 		this.whitelist = whitelist || '';
 	}
 }
-
 
 chrome.storage.local.get("redirects", function(result) {
 	var redirectsArray = result.redirects || [];

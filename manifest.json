@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
   "name": "Boiler Block",
-  "description": "Redirect and block sites of the user's choosing",
-  "version": "3.5.4",
+  "description": "Block redirects from select web sites!",
+  "version": "1.0.0",
   "icons": {
-    "192": "images/logo192.png"
+    "192": "images/logonew.png"
   },
   "permissions": [
     "webRequest",

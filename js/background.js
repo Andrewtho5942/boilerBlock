@@ -1,19 +1,37 @@
 var storageArea = chrome.storage.local;
 var redirects = {};
+var currentURL = "";
+
 
 function checkRedirects (details) {
-    
     //only allow GET requests to be redirected
     if (details.method != 'GET') {
 		return {};
 	}
-    console.log("checking GET request");
+console.log(details);
+		currentURL = details.initiator;
+
+	console.log("-- checking: " + currentURL);
     for (var i = 0; i < redirects.length; i++) {
 		var r = redirects[i];
-        if (r.isOutgoing) {
-            return {cancel : true};
-        }   
+		
+		if (String(currentURL).includes(r.title.sourceURL) && !details.url.includes(r.title.sourceURL)) {
+			console.log("blocking redirect from " + currentURL + " sourceURL: "+r.title.sourceURL);
+			chrome.tabs.query({url:details.url},function(tabs){
+				if(tabs && tabs.length > 0) {
+					chrome.tabs.remove(tabs[0].id, function(){
+						console.log("block tab removed");
+					});
+				}else{
+					console.log("no tabs found to close on block");
+				}
+			});
+			return {cancel : true};
+		}
+
 	}
+	
+	//don't block if no rules match the URL
   	return {}; 
 }
 
@@ -65,4 +83,6 @@ function updateIcon() {
 		}
 	});	
 }
+
 updateIcon();
+setUpRedirectListener();
