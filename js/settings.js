@@ -1,3 +1,5 @@
+import Redirect from "./popup";
+
 var elementArray = [];
 var count = 0;
 

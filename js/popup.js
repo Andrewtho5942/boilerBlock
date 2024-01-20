@@ -73,3 +73,4 @@ class Redirect {
 		this.whitelist = whitelist;
 	}
 }
+export default Redirect;
