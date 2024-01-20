@@ -10,8 +10,40 @@ function updateForms() {
 	}
 	for (var i = 0; i < count; i++) {
 		var element = document.createElement("div");
-		element.setAttribute("class", "redirect");
+
+		element.setAttribute("class", "card");
 		element.setAttribute("id", "redirect" + i);
+
+		var source = document.createElement("label");
+		var whitelist = document.createElement("label");
+		var deleteBtn = document.createElement("button");
+		var editBtn = document.createElement("button");
+		var titleText = document.createElement("h3");
+
+		source.textContent = "Source URL: " + redirects[i].title.sourceURL;
+		whitelist.textContent = "Whitelist: " + redirects[i].title.whitelist;
+		deleteBtn.textContent = "Delete";
+		editBtn.textContent = "Edit";
+		titleText.textContent = redirects[i].title.title;
+		titleText.setAttribute("class","cardTitle");
+
+		//append the elements to the redirect div
+		
+		var innerDiv = document.createElement("div");
+
+		element.appendChild(titleText);
+		element.appendChild(document.createElement("br"));
+
+		innerDiv.appendChild(source);
+		innerDiv.appendChild(document.createElement("br"));
+		innerDiv.appendChild(whitelist);
+		innerDiv.appendChild(document.createElement("br"));
+		innerDiv.appendChild(deleteBtn);
+		innerDiv.appendChild(editBtn);
+		innerDiv.appendChild(document.createElement("br"));
+
+		element.appendChild(innerDiv);
+		
 		elementArray.push(element);
 		document.body.appendChild(element);
 	}
