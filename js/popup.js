@@ -67,17 +67,9 @@ pageLoad();
 
 //Redirect class
 class Redirect {
-	constructor(description, sourceURL, destinationURL, isDisabled, blockPage, isOutgoing) {
+	constructor(description, sourceURL) {
 		this.description = description || '';
-		this.sourceURL = sourceURL || '';
-		this.destinationURL = destinationURL || '';
-		this.isDisabled = isDisabled || false;
-		this.blockPage = blockPage || false;
-		this.isOutgoing = isOutgoing || false;
-	}
-	equals(redirect) {
-		return (this.description == redirect.description
-		&& this.sourceUrl == redirect.sourceUrl
-		&& this.destinationUrl == redirect.destinationUrl);
+		this.sourceURL = sourceURL;
+
 	}
 }
