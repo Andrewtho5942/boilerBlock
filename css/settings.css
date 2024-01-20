@@ -1,0 +1,89 @@
+body {
+    font-family: sans-serif;
+}
+
+/*Style the home page*/
+.title {
+    font-size:50px;
+    color:#333;
+
+}
+.head2 {
+    color:#333;
+    font-size:30px;
+}
+
+.centered {
+    text-align:center;
+    align-content:center;
+}
+
+p {
+    display:inline;
+    font-size:20px;
+}
+
+.card {
+    margin:20px;
+    max-width:95%;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    text-align: left;
+    padding:30px;
+
+}
+
+.textbox {
+    width:95%;
+    margin-bottom:20px;
+}
+
+
+.cardTitle {
+    font-size:22px;
+    margin:10px;
+}
+
+button {
+    font-size: 15px;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin:5px;
+}
+
+label {
+    font-size:20px;
+
+}
+
+h2 {
+    padding:20px;
+    margin-bottom:20px;
+}
+
+h1 {
+    margin-top:100px;
+
+}
+
+.buttons {
+
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items:center;
+}
+
+.redirects {
+    max-width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-content:center;
+}
+
+.block-btn {
+    display:inline;
+}
