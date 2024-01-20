@@ -2,9 +2,6 @@ var storageArea = chrome.storage.local;
 var viewModel = {}; //used for databinding
 
 var REDIRECTS = []; // The global redirects list...
-function normalize(r) {
-	return new Redirect(r).toObject(); //Cleans out any extra props, and adds default values for missing ones.
-}
 
 var storage = chrome.storage.local;
 
@@ -67,17 +64,9 @@ pageLoad();
 
 //Redirect class
 class Redirect {
-	constructor(description, sourceURL, destinationURL, isDisabled, blockPage, isOutgoing) {
-		this.description = description || '';
-		this.sourceURL = sourceURL || '';
-		this.destinationURL = destinationURL || '';
-		this.isDisabled = isDisabled || false;
-		this.blockPage = blockPage || false;
-		this.isOutgoing = isOutgoing || false;
-	}
-	equals(redirect) {
-		return (this.description == redirect.description
-		&& this.sourceUrl == redirect.sourceUrl
-		&& this.destinationUrl == redirect.destinationUrl);
+	constructor(title, sourceURL, whitelist) {
+		this.title = title || '';
+		this.sourceURL = sourceURL;
+		this.whitelist = whitelist;
 	}
 }
