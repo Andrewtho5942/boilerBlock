@@ -33,6 +33,7 @@ function createRedirect() {
 	redirects.push(newRedirect);
 	sourceText.value = '';
 	count++;
+	updateForms();
 	
 
 }
