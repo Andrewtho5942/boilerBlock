@@ -21,9 +21,9 @@ function checkRedirects (details) {
 
 function onChange (changes) {
     //if the 'disabled' attribute was changed...
-    if (changes.disabled) {
+    if (changes.isDisabled) {
         //if the extension was disabled, remove the listeners
-		if (changes.disabled.newValue == true) {
+		if (changes.isDisabled.newValue == true) {
 			console.log('Disabling Listener');
 			chrome.webRequest.onBeforeRequest.removeListener(checkRedirects);
         } 
@@ -35,8 +35,6 @@ function onChange (changes) {
 	}
 }
 chrome.storage.onChanged.addListener(onChange);
-
-
 
 function setUpRedirectListener () {
     chrome.webRequest.onBeforeRequest.removeListener(checkRedirects); //Unsubscribe first, in case there are changes...
