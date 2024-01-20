@@ -16,13 +16,13 @@
     
     <!--buttons-->
     <form action="/redirect.php">
-        <label for="description-form">Description:</label>
-        <input class="textbox" type="text" id="description-form">
+        <label for="title-form">Blocking Rule Title:</label>
+        <input class="textbox" type="text" id="title-form">
         <br>
-        <label for="source-form">Source URL for redirect: </label>
+        <label for="source-form">Source URL of Redirects: </label>
         <input class="textbox" type="text" id="source-form">
         <br>
-        <label for="whitelist-form">Add a whitelist URL:</label>
+        <label for="whitelist-form">Add a Whitelist URL:</label>
         <input class="textbox" type="text" id="whitelist-form">
     </form>
 
@@ -36,12 +36,11 @@
     <!--list of redirects go here-->
     <div class="redirects">
         <div class="card">
-            <h3 class="cardTitle">Redirect Title 1</h3>
+            <h3 class="cardTitle">Redirect Title</h3>
             <br>
             <form action="/redirect.php">
                 <!-- redirect object item -->
-                <label>Redirect description here</label><br>
-                <label>Source URL: {URL here}</label>
+                <label>Source URL: {URL here}</label> <br>
                 <label>Whitelist: {whitelist URL}</label>
             </form>
         </div>
