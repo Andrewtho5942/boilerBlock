@@ -1,7 +1,18 @@
 var elementArray = [];
+var count = 0;
 
 function updateForms() {
-
+	for (var i = 0; i < elementArray.size; i++) {
+		elementArray[i].remove();
+		elementArray[i] = null;
+	}
+	for (var i = 0; i < count; i++) {
+		var element = document.createElement("div");
+		element.setAttribute("class", "redirect");
+		element.setAttribute("id", "redirect" + i);
+		elementArray.push(element);
+		document.body.appendChild(element);
+	}
 }
 
 function createRedirect() {
@@ -21,7 +32,7 @@ function createRedirect() {
 	newRedirect.whitelist = whitelist;
 	redirects.push(newRedirect);
 	sourceText.value = '';
-
+	count++;
 	
 
 }
