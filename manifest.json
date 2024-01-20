@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Redirector Test 2",
+  "name": "Boiler Block",
   "description": "Redirect and block sites of the user's choosing",
   "version": "3.5.4",
   "icons": {
