@@ -1,4 +1,3 @@
-import Redirect from "./popup";
 
 var elementArray = [];
 var count = 0;
@@ -22,11 +21,11 @@ function createRedirect() {
     //update edit form title
     //el('#edit-redirect-form h3').textContent = 'Create Redirect';
 	//el('#btn-save-redirect').setAttribute('disabled', 'disabled');
-	var sourceURLBox = getElementById("source-from");
+	var sourceURLBox = document.getElementById("source-form");
 	var sourceURL = sourceURLBox.value;
-	var titleBox = getElementById("title-from");
+	var titleBox = document.getElementById("title-from");
 	var title = titleBox.value;
-	var whitelistBox = getElementById("whitelist-from");
+	var whitelistBox = document.getElementById("whitelist-from");
 	var whitelist = whitelistBox.value;
 	var newRedirect = new Redirect();
 	newRedirect.sourceURL = sourceURL;
