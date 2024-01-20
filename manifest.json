@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "Redirector Test 2",
+  "description": "Redirect and block sites of the user's choosing",
+  "version": "3.5.4",
+  "icons": {
+    "192": "images/logo192.png"
+  },
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "webNavigation",
+    "storage",
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "notifications"
+  ], 
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": true
+  },
+  "options_ui": {
+    "page": "public/index.html",
+    "chrome_style": true
+  },
+  "browser_action": {
+    "default_title": "Redirector",
+    "default_popup": "public/index.html"
+  }
+}
