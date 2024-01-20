@@ -1,5 +1,3 @@
-var isFirefox = !!navigator.userAgent.match(/Firefox/i);
-
 var storageArea = chrome.storage.local;
 var redirects = {};
 
