@@ -4,10 +4,12 @@ var storage = chrome.storage.local;
 var count = 0;
 
 function updateForms() {
-	for (var i = 0; i < elementArray.size; i++) {
-		elementArray[i].remove();
-		elementArray[i] = null;
+	for (var i = 0; i < elementArray.length; i++) {
+		var remove = document.getElementById("redirect" + i);
+		remove.remove();
+		//elementArray[i] = null;
 	}
+	elementArray = [];
 	for (var i = 0; i < count; i++) {
 		var element = document.createElement("div");
 
