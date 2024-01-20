@@ -56,7 +56,7 @@ function pageLoad() {
 		//bind data to the button
 		document.getElementById("btnToggle").checked = viewModel["isDisabled"];
 	});
-
+	console.log("adding listeners");
 	document.getElementById("btnToggle").addEventListener('click', () => toggle('isDisabled'));
 	document.getElementById("settings-button").addEventListener('click', () => openSettings());
 }
