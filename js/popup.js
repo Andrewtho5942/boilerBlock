@@ -14,19 +14,6 @@ function toggle(prop) {
 }
 
 function openSettings() {
-	//push a new redirect object for testing
-	/*console.log("pushing new redirect!");
-	REDIRECTS.push(new Redirect(
-		{
-			"description": "Example redirect",
-			"sourceUrl": "https://www.yahoo.com",
-			"destinationUrl": "https://www.reddit.com/",
-			"disabled": false
-		}
-	));
-	saveChanges();
-*/
-
   var url = chrome.extension.getURL('/settings.html');
   chrome.tabs.query({currentWindow:true}, function(tabs) {
 	//search for an already open tab and open it instead if found	
