@@ -4,7 +4,7 @@
   "description": "Redirect and block sites of the user's choosing",
   "version": "3.5.4",
   "icons": {
-    "192": "images/logo192.png"
+    "192": "images/logonew.png"
   },
   "permissions": [
     "webRequest",
