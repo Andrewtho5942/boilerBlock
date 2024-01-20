@@ -11,19 +11,20 @@ function checkRedirects (details) {
 	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
 		if(tabs[0]) {
 			currentURL = tabs[0].url;
-			// correct
 		}
 	});
-	console.log(currentURL);
-	//empty
-    console.log("checking GET request");
+
+    console.log("checking GET request" + currentURL);
     
 	for (var i = 0; i < redirects.length; i++) {
 		var r = redirects[i];
         if (String(currentURL).includes(r.sourceURL)) {
-            return {redirectUrl : currentURL};
+			
+            return {cancel : true};
         }   
 	}
+
+	//don't block if no rules match the URL
   	return {}; 
 }
 
@@ -75,4 +76,6 @@ function updateIcon() {
 		}
 	});	
 }
+
 updateIcon();
+setUpRedirectListener();
