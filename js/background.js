@@ -12,16 +12,17 @@ function checkRedirects (details) {
 		var r = redirects[i];
         console.log(r.includePattern);
 		if(String(details.url).includes(r.includePattern)) {
-			    console.log('Redirecting ' + details.url + ' ===> ' + r.redirectUrl);
-			    return { redirectUrl: r.redirectUrl };
+			    console.log('Redirecting ' + details.url + ' ===> ' + r.redirectURL);
+			    return { redirectURL: r.redirectURL };
         }
 	}
   	return {}; 
 }
 
 function onChange (changes) {
-    //if the 'disabled' attribute was changed...
+    //if the 'isDisabled' attribute was changed...
     if (changes.isDisabled) {
+		updateIcon();
         //if the extension was disabled, remove the listeners
 		if (changes.isDisabled.newValue == true) {
 			console.log('Disabling Listener');
@@ -52,3 +53,18 @@ function setUpRedirectListener () {
 		chrome.webRequest.onBeforeRequest.addListener(checkRedirects, filter, ["blocking"]);
 	});
 }
+
+//update icon badge
+function updateIcon() {
+	console.log("toggle icon");
+	chrome.storage.local.get({isDisabled:false}, function(obj) {
+		if (obj.isDisabled) {
+			chrome.browserAction.setBadgeText({text: 'off'});
+			chrome.browserAction.setBadgeBackgroundColor({color: '#fc5953'});
+		} else {
+			chrome.browserAction.setBadgeText({text: 'on'});
+			chrome.browserAction.setBadgeBackgroundColor({color: '#35b44a'});
+		}
+	});	
+}
+updateIcon();
