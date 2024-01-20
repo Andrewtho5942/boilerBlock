@@ -31,6 +31,8 @@ function updateForms() {
 			var remove = document.getElementById("redirect" + index);
 			remove.remove();
 			elementArray.splice(index, 1);
+			//update local storage
+			storage.set({['redirects'] : redirects});
 			updateForms();
 		})
 
@@ -87,6 +89,8 @@ function createRedirect() {
 	
 	count++;
 	updateForms();
+	//update local storage
+	storage.set({['redirects'] : redirects});
 }
 
 function cancelEdit() {
@@ -104,7 +108,6 @@ class Redirect {
 		this.whitelist = whitelist || '';
 	}
 }
-
 
 chrome.storage.local.get("redirects", function(result) {
 	var redirectsArray = result.redirects || [];

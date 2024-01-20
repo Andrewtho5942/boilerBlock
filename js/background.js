@@ -7,11 +7,21 @@ function checkRedirects (details) {
     if (details.method != 'GET') {
 		return {};
 	}
+	var currentURL = "";
+	chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
+		if(tabs[0]) {
+			currentURL = tabs[0].url;
+			// correct
+		}
+	});
+	console.log(currentURL);
+	//empty
     console.log("checking GET request");
-    for (var i = 0; i < redirects.length; i++) {
+    
+	for (var i = 0; i < redirects.length; i++) {
 		var r = redirects[i];
-        if (r.isOutgoing) {
-            return {cancel : true};
+        if (String(currentURL).includes(r.sourceURL)) {
+            return {redirectUrl : currentURL};
         }   
 	}
   	return {}; 
