@@ -24,12 +24,12 @@ function onChange (changes) {
     if (changes.disabled) {
         //if the extension was disabled, remove the listeners
 		if (changes.disabled.newValue == true) {
-			console.log('Disabling Redirector, removing listener');
+			console.log('Disabling Listener');
 			chrome.webRequest.onBeforeRequest.removeListener(checkRedirects);
         } 
         //if the extension was enabled, set up the listeners
         else {
-			console.log('Enabling Redirector, setting up listener');
+			console.log('Enabling Listener');
 			setUpRedirectListener();
 		}
 	}

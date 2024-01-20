@@ -1,16 +1,9 @@
 var storageArea = chrome.storage.local;
+var viewModel = {}; //used for databinding
 
 var REDIRECTS = []; // The global redirects list...
 function normalize(r) {
 	return new Redirect(r).toObject(); //Cleans out any extra props, and adds default values for missing ones.
-}
-// Saves the entire list of redirects to storage.
-function saveChanges() {
-
-	// Clean them up so angular $$hash things and stuff don't get serialized.
-	let arr = REDIRECTS.map(normalize);
-
-	storageArea.set({'redirects' : arr});
 }
 
 var storage = chrome.storage.local;
@@ -19,9 +12,8 @@ var storage = chrome.storage.local;
 function toggle(prop) {
   storage.get({[prop]: false}, function(obj) {
     storage.set({[prop] : !obj[prop]});
-	console.log(!obj[prop]); //log new value
-  }
-  );
+	viewModel[prop] = !obj[prop];
+  });
 }
 
 function openSettings() {
@@ -60,9 +52,13 @@ function openSettings() {
 
 function pageLoad() {
 	//load data from storage
+	storage.get({isDisabled:false}, function(result) {
+		viewModel = result;
+		//bind data to the button
+		document.getElementById("btnToggle").checked = viewModel["isDisabled"];
+	});
 
-
-	document.getElementById("btnToggle").addEventListener('click', () => toggle('disabled'));
+	document.getElementById("btnToggle").addEventListener('click', () => toggle('isDisabled'));
 	document.getElementById("settings-button").addEventListener('click', () => openSettings());
 }
 
