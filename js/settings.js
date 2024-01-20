@@ -3,6 +3,7 @@ function createRedirect() {
     //update edit form title
     //el('#edit-redirect-form h3').textContent = 'Create Redirect';
 	//el('#btn-save-redirect').setAttribute('disabled', 'disabled');
+	
 
 }
 
@@ -11,24 +12,4 @@ function cancelEdit() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-document.getElementById("create-btn").addEventListener('click', createRedirect);
+document.getElementById("new").addEventListener('click', createRedirect);
