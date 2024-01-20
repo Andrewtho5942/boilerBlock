@@ -1,8 +1,72 @@
 <!DOCTYPE html>
-  <body>
-    
-    <p>This is the settings page!</p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style-home.css">
+    <title>Home: BoilerBlock</title>
+</head>
+<body>
+    <!--logo/landing-->
+    <div class="centered">
+        <h1 class="title">Boiler Block</h1>
+        <h2 class="head2">A place to redirect your links, built by Purdue students.</h2>
 
-    <script src="./index.js"></script>
-  </body>
+    </div>
+    <!--buttons-->
+    <div>
+        <div class="row">
+            <div class="col-L">
+                <!--new redirect-->
+                <button class="btn-action">New Redirect<img class="btn-icon" src=""></button>
+            </div>
+            <div class="col-R">
+                <!--import-->
+                <button class="btn-action"><img class="btn-icon" src=""></button>
+                <!--export-->
+                <button class="btn-action"><img class="btn-icon" src=""></button>
+                <!--help-->
+                <button class="btn-action"><img class="btn-icon" src=""></button>
+            </div>
+        </div>
+    </div>
+
+    <!--list of redirects go here-->
+    <div>
+        <div class="card">
+            <h3 class="cardTitle">Redirect Title</h3>
+            <form action="/redirect.php">
+                <p class="cardText">redirect</p>
+                <!--user enters source link-->
+                <input type="text" id="source">
+                <label for="source">Enter source link...</label>
+                <p class="cardText">to</p>
+                <!--user enters destination link-->
+                <input type="text" id="dest">
+                <label for="dest">Enter a destination...</label>
+                <!--block switch-->
+                <input type="checkbox" id="blocked">
+                <label for="blocked">Block</label>
+            </form>
+        </div>
+        <div class="card">
+            <h3 class="cardTitle">Redirect Title 2</h3>
+            <form action="/redirect.php">
+                <p class="cardText">redirect</p>
+                <!--user enters source link-->
+                <input type="text" id="source">
+                <label for="source">Enter source link...</label>
+                <p class="cardText">to</p>
+                <!--user enters destination link-->
+                <input type="text" id="dest">
+                <label for="dest">Enter a destination...</label>
+                <!--block switch-->
+                <input type="checkbox" id="blocked">
+                <label for="blocked">Block</label>
+            </form>
+        </div>
+
+    </div>
+</body>
 </html>

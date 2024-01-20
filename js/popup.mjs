@@ -1,5 +1,3 @@
-import { Redirect } from './redirect.js'
-
 var storageArea = chrome.storage.local;
 
 var REDIRECTS = []; // The global redirects list...
@@ -21,14 +19,14 @@ var storage = chrome.storage.local;
 function toggle(prop) {
   storage.get({[prop]: false}, function(obj) {
     storage.set({[prop] : !obj[prop]});
-	console.log(viewModel[prop]); //log new value
+	console.log(!obj[prop]); //log new value
   }
   );
 }
 
 function openSettings() {
 	//push a new redirect object for testing
-	console.log("pushing new redirect!");
+	/*console.log("pushing new redirect!");
 	REDIRECTS.push(new Redirect(
 		{
 			"description": "Example redirect",
@@ -38,9 +36,9 @@ function openSettings() {
 		}
 	));
 	saveChanges();
+*/
 
-/*
-  var url = chrome.extension.getURL('public/settings.html');
+  var url = chrome.extension.getURL('../settings.html');
   
   chrome.tabs.query({currentWindow:true}, function(tabs) {
 	//search for an already open tab and open it instead if found	
@@ -56,17 +54,33 @@ function openSettings() {
 		//no open tab was found, so create a new one
 		chrome.tabs.create({url:url, active:true});
 	});
+
   return;
-  */
 }
 
 function pageLoad() {
-	document.getElementById("clickBtn").addEventListener('click', () => toggle('disabled'));
-	document.getElementById("newPage").addEventListener('click', () => openSettings());
+	//load data from storage
+
+
+	document.getElementById("btnToggle").addEventListener('click', () => toggle('disabled'));
+	document.getElementById("settings-button").addEventListener('click', () => openSettings());
 }
 
 pageLoad();
 //Setup page...
 
 
-
+//Redirect class
+class Redirect {
+	constructor(description, sourceURL, destinationURL, isDisabled) {
+		this.description = description || '';
+		this.sourceURL = sourceURL || '';
+		this.destinationURL = destinationURL || '';
+		this.isDisabled = isDisabled || false;
+	}
+	equals(redirect) {
+		return (this.description == redirect.description
+		&& this.sourceUrl == redirect.sourceUrl
+		&& this.destinationUrl == redirect.destinationUrl);
+	}
+}
