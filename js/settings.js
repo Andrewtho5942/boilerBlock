@@ -1,5 +1,6 @@
-
+var redirects = [];
 var elementArray = [];
+var storage = chrome.storage.local;
 var count = 0;
 
 function updateForms() {
@@ -18,25 +19,28 @@ function updateForms() {
 
 function createRedirect() {
     newRedirect = new Redirect();
-    //update edit form title
-    //el('#edit-redirect-form h3').textContent = 'Create Redirect';
-	//el('#btn-save-redirect').setAttribute('disabled', 'disabled');
 	var sourceURLBox = document.getElementById("source-form");
 	var sourceURL = sourceURLBox.value;
-	var titleBox = document.getElementById("title-from");
+
+	var titleBox = document.getElementById("title-form");
 	var title = titleBox.value;
-	var whitelistBox = document.getElementById("whitelist-from");
+
+	var whitelistBox = document.getElementById("whitelist-form");
 	var whitelist = whitelistBox.value;
-	var newRedirect = new Redirect();
-	newRedirect.sourceURL = sourceURL;
-	newRedirect.description = title;
-	newRedirect.whitelist = whitelist;
-	redirects.push(newRedirect);
-	sourceText.value = '';
+	redirects.push(new Redirect(
+		{
+		"title": title,
+		"sourceURL":sourceURL,
+		"whitelist":whitelist
+		}
+	));
+	//clear the form
+	sourceURLBox.value = '';
+	titleBox.value = '';
+	whitelistBox.value='';
+	
 	count++;
 	updateForms();
-	
-
 }
 
 function cancelEdit() {
@@ -45,3 +49,21 @@ function cancelEdit() {
 
 
 document.getElementById("new").addEventListener('click', createRedirect);
+
+//Redirect class
+class Redirect {
+	constructor(title, sourceURL, whitelist) {
+		this.title = title || '';
+		this.sourceURL = sourceURL || '';
+		this.whitelist = whitelist || '';
+	}
+}
+
+
+chrome.storage.local.get("redirects", function(result) {
+	var redirectsArray = result.redirects || [];
+  
+	// Now, redirectsArray contains the array you retrieved from storage
+	console.log('Redirects Array:', redirectsArray);
+  });
+  
