@@ -30,8 +30,7 @@ function openSettings() {
 	saveChanges();
 */
 
-  var url = chrome.extension.getURL('../settings.html');
-  
+  var url = chrome.extension.getURL('/settings.html');
   chrome.tabs.query({currentWindow:true}, function(tabs) {
 	//search for an already open tab and open it instead if found	
 	for (var i=0; i < tabs.length; i++) {

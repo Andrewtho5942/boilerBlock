@@ -38,7 +38,8 @@ function onChange (changes) {
 chrome.storage.onChanged.addListener(onChange);
 
 function setUpRedirectListener () {
-    chrome.webRequest.onBeforeRequest.removeListener(checkRedirects); //Unsubscribe first, in case there are changes...
+	//Unsubscribe all listeners to account for changes
+    chrome.webRequest.onBeforeRequest.removeListener(checkRedirects); 
 
     storageArea.get({redirects:[]}, function(obj) {
 		redirects = obj.redirects;
@@ -56,7 +57,6 @@ function setUpRedirectListener () {
 
 //update icon badge
 function updateIcon() {
-	console.log("toggle icon");
 	chrome.storage.local.get({isDisabled:false}, function(obj) {
 		if (obj.isDisabled) {
 			chrome.browserAction.setBadgeText({text: 'off'});
