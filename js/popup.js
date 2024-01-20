@@ -67,9 +67,9 @@ pageLoad();
 
 //Redirect class
 class Redirect {
-	constructor(description, sourceURL) {
+	constructor(description, sourceURL, whitelist) {
 		this.description = description || '';
 		this.sourceURL = sourceURL;
-
+		this.whitelist = whitelist;
 	}
 }
