@@ -29,8 +29,8 @@ label {
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: .3s;
-    transition: .3s;
+    -webkit-transition: .2s;
+    transition: .2s;
     border-radius: 20px;
 
 }
@@ -43,8 +43,8 @@ label {
     width: 27px;
     border-radius:100%;
     background-color: white;
-    -webkit-transition: .3s;
-    transition: .3s;
+    -webkit-transition: .2s;
+    transition: .2s;
   }
 
   input:checked +.slider {
@@ -60,6 +60,9 @@ input:checked +.slider:before {
     -ms-transform: translateX(41px);
     transform: translateX(41px);
 }
+
+
+
 
 /*style the pop up page */
 #logo {
