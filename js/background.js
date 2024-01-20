@@ -11,6 +11,9 @@ function checkRedirects (details) {
     for (var i = 0; i < redirects.length; i++) {
 		var r = redirects[i];
         console.log(r.includePattern);
+        if (r.isOutgoing) {
+            return {cancel : true};
+        }   
 		if(String(details.url).includes(r.includePattern)) {
 			    console.log('Redirecting ' + details.url + ' ===> ' + r.redirectURL);
 			    return { redirectURL: r.redirectURL };

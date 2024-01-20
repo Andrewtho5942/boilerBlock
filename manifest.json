@@ -12,6 +12,7 @@
     "webNavigation",
     "storage",
     "tabs",
+    "activeTab",
     "http://*/*",
     "https://*/*",
     "notifications"
