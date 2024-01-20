@@ -11,27 +11,18 @@
     <!--logo/landing-->
     <div class="centered">
         <h1 class="title">Boiler Block</h1>
-        <h2 class="head2">A place to redirect your links, built by Purdue students.</h2>
+        <h2 class="head2">A place to take control of your browsing, built by Purdue students.</h2>
     </div>
     
     <!--buttons-->
     <form action="/redirect.php">
-        <label for="source">Redirect a source: </label>
+        <label for="source-form">Redirect a source: </label>
         <!--user enters source link-->
         <input class="textbox" type="text" id="source">
         <!--outgoing-->
-        <input type="checkbox" id="outgoing">
-        <label for="outgoing">Block Outgoing</label>
         <br>
-        <p class="cardText">to</p>
-        <!--user enters destination link-->
-        <label for="dest">a destination: </label>
-        <input class="textbox" type="text" id="dest">
-
-        <!--block switch-->
-        <div class="block-btn">
-            <input type="checkbox" id="blocked">
-            <label for="blocked">Block</label>
+        <div id = "whitelist-form">
+            
         </div>
     </form>
 
@@ -51,9 +42,9 @@
                 <!-- redirect object item -->
                 <label>Redirect description here</label><br>
                 <label>Source URL: {URL here}</label>
-                <label for="outgoing">Outgoing Requests blocked</label><br>
-                <label for="dest">Destination URL: {url here} </label>
-                <label for="blocked">Blocking Requests</label>
+                <div id="whitelist">
+
+                </div>
             </form>
         </div>
         <br>
