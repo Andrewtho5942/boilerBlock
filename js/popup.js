@@ -21,9 +21,6 @@ var storage = chrome.storage.local;
 function toggle(prop) {
   storage.get({[prop]: false}, function(obj) {
     storage.set({[prop] : !obj[prop]});
-    viewModel[prop] = !obj[prop];
-    //dataBind(document.body, viewModel);
-
 	console.log(viewModel[prop]); //log new value
   }
   );
@@ -64,11 +61,6 @@ function openSettings() {
 }
 
 function pageLoad() {
-	storage.get({logging:false, enableNotifications:false, disabled: false}, function(obj) {
-		viewModel = obj;
-		//dataBind(document.body, viewModel);
-	})
- 
 	document.getElementById("clickBtn").addEventListener('click', () => toggle('disabled'));
 	document.getElementById("newPage").addEventListener('click', () => openSettings());
 }

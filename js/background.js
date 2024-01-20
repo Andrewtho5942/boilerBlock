@@ -47,31 +47,10 @@ function setUpRedirectListener () {
 			console.log('No redirects defined, not setting up listener');
 			return;
 		}
-
-		//partitionedRedirects = createPartitionedRedirects(redirects);
-		var filter = createFilter(redirects);
-
-		console.log('Setting filter for listener: ' + JSON.stringify(filter));
+		var filter = {
+			urls: ["https://*/*", "http://*/*"],
+			types : ["main_frame"]
+		};
 		chrome.webRequest.onBeforeRequest.addListener(checkRedirects, filter, ["blocking"]);
 	});
-}
-//Creates a filter to pass to the listener so we don't have to run through
-//all the redirects for all the request types we don't have any redirects for anyway.
-function createFilter(redirects) {
-	var types = [];
-	for (var i = 0; i < redirects.length; i++) {
-		redirects[i].appliesTo.forEach(function(type) { 
-			if(chrome.webRequest.ResourceType[type.toUpperCase()]!== undefined){
-			if (types.indexOf(type) == -1) {
-				types.push(type);
-			}
-		}
-		});
-	}
-	types.sort();
-
-	return {
-		urls: ["https://*/*", "http://*/*"],
-		types : types
-	};
 }
