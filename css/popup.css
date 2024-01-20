@@ -1,7 +1,5 @@
-body {
-    font-family: sans-serif;
-}
 
+/*style the pop up page */
 #logo {
     width: auto; 
     height: 29px; 
@@ -16,7 +14,7 @@ body {
 
 #popup {
     width: 135px; 
-    height: 141px; 
+    height: 140px; 
     position: relative; 
     background: #FEFCFC; 
     border-radius: 10px; 
@@ -56,23 +54,6 @@ body {
     word-wrap: break-word;
 }
 
-.center-button {
-    width: 50%; 
-    height: auto; 
-    margin:auto;
-    top: 8px; 
-    display:block; 
-    position: absolute; 
-    justify-content: center; 
-    align-items: center; 
-}
-
-#exit {
-    width: auto; 
-    height: 7px; 
-    float:right;
-    padding-right:8px;
-}
 
 #settings {
     width: 135px; 
@@ -101,4 +82,32 @@ button {
     width:auto;
     border:none;
     background-color:none;   
+}
+
+.switch {
+    height: 25px; 
+    padding-top: 1px; 
+    padding-bottom: 1px; 
+    padding-left: 1px; 
+    padding-right: 27px; 
+    left: 42px; 
+    top: 55px; 
+    position: absolute; 
+    background: #D9D9D9; 
+    border-radius: 25px; 
+    overflow: hidden; 
+    justify-content: flex-start; 
+    align-items: center; 
+    display: inline-flex;
+}
+
+.slider {
+    width: 23px; height: 23px; position: relative; background: #FAFAFA; box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.10); border-radius: 31px;
+}
+
+.toggle {
+    font-family:sans-serif;
+    display:inline-flex;
+    margin:auto;
+    position:relative;
 }
