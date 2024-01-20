@@ -1,0 +1,22 @@
+body {
+    font-family: sans-serif;
+}
+
+/*Style the home page*/
+.title {
+    font-size:50px;
+    color:#333;
+}
+.head2 {
+    color:#333;
+    font-size:30px;
+}
+
+.centered {
+    text-align:center;
+    align-content:center;
+}
+
+p {
+    display:inline;
+}
