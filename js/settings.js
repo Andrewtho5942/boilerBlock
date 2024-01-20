@@ -22,6 +22,18 @@ function updateForms() {
 		var editBtn = document.createElement("button");
 		var titleText = document.createElement("h3");
 
+		deleteBtn.setAttribute("id", "delete" + i);
+
+		deleteBtn.addEventListener('click', function() {
+			var index = this.id.substring(6);
+			redirects.splice(index, 1);
+			count--;
+			var remove = document.getElementById("redirect" + index);
+			remove.remove();
+			elementArray.splice(index, 1);
+			updateForms();
+		})
+
 		source.textContent = "Source URL: " + redirects[i].title.sourceURL;
 		whitelist.textContent = "Whitelist: " + redirects[i].title.whitelist;
 		deleteBtn.textContent = "Delete";
@@ -82,7 +94,7 @@ function cancelEdit() {
 }
 
 
-document.getElementById("new").addEventListener('click', createRedirect);
+document.getElementById("new").addEventListener('click', createRedirect);	
 
 //Redirect class
 class Redirect {
