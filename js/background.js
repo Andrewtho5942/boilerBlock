@@ -97,8 +97,11 @@ function closeTabByURL(url) {
   }
 
 function updateCurrentWebsite(url){
-	console.log("current website: "+ url);
-	currentURL = url;
+	if(url != ""){
+		console.log("current website: "+ url);
+		currentURL = url;
+	}
+	
 }
 
 // Listen for tab updates
@@ -136,6 +139,7 @@ chrome.windows.onCreated.addListener(function(window) {
 		if (String(currentURL).includes(r.title.sourceURL)) {
 			//close the window
 			chrome.windows.remove(window.id,function(){
+				console.log("lastError: "+chrome.runtime.lastError);
 				if (chrome.runtime.lastError){
 					console.log("no window");
 				} 
