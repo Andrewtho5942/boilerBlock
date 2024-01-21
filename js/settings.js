@@ -25,9 +25,19 @@ function updateForms() {
 
 		editBtn.setAttribute("id", "edit" + i);
 		deleteBtn.setAttribute("id", "delete" + i);
+		editBtn.setAttribute("class", "form-button");
+		deleteBtn.setAttribute("class", "form-button");
 
 		editBtn.addEventListener('click', function(){
+			var index = Number(this.id.substring(4));
+			redirects.splice(index, 1);
 
+			var remove = document.getElementById("redirect" + index);
+			remove.remove();
+			elementArray.splice(index, 1);
+			//update local storage
+			storage.set({['redirects'] : redirects});
+			updateForms();
 		});
 
 		deleteBtn.addEventListener('click', function() {

@@ -43,8 +43,9 @@ p {
     justify-content: center;
     text-align: left;
     padding:30px;
+    padding-bottom:10px;
     background-color: rgb(237, 237, 237);
-
+    border-radius: 20px;
 }
 
 form {
@@ -142,4 +143,12 @@ button:hover {
 .list-item {
    background: rgb(196, 196, 196);
    padding:10px;
+}
+
+.form-button {
+    width: 80px;
+}
+.form-checkBox {
+    width:20px;
+    height:20px;
 }
