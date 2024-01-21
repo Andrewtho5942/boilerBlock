@@ -32,13 +32,17 @@ p {
 }
 
 .card {
-    margin:20px;
+    margin-left:30%;
+    margin-right: 30%;
+    margin-top: 20px;
+    margin-bottom: 20px;
     max-width:95%;
     display:flex;
     flex-wrap:wrap;
     justify-content: center;
     text-align: left;
     padding:30px;
+    background-color: rgb(237, 237, 237);
 
 }
 
@@ -124,4 +128,9 @@ button:hover {
 .btn-icon {
     width:12px;
     margin-right:5px;
+}
+
+.list-item {
+   background: rgb(196, 196, 196);
+   padding:10px;
 }
