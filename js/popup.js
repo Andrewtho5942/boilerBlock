@@ -7,9 +7,15 @@ var storage = chrome.storage.local;
 
 
 function toggle(prop) {
-  storage.get({[prop]: false}, function(obj) {
+  storage.get({[prop] : true}, function(obj) {
     storage.set({[prop] : !obj[prop]});
 	viewModel[prop] = !obj[prop];
+	console.log(viewModel[prop]);
+	if (viewModel[prop]) {
+		document.getElementById("slider-label").textContent = "Disabled";
+	}else{
+		document.getElementById("slider-label").textContent = "Enabled";
+	}
   });
 }
 
@@ -37,8 +43,13 @@ function pageLoad() {
 	//load data from storage
 	storage.get({isDisabled:false}, function(result) {
 		viewModel = result;
-		//bind data to the button
-		document.getElementById("btnToggle").checked = viewModel["isDisabled"];
+		//bind data to the page
+		if (viewModel['isDisabled']) {
+			document.getElementById("slider-label").textContent = "Disabled";
+		}else{
+			document.getElementById("slider-label").textContent = "Enabled";
+		}
+		document.getElementById("btnToggle").checked = !viewModel["isDisabled"];
 	});
 	console.log("adding listeners");
 	document.getElementById("btnToggle").addEventListener('click', () => toggle('isDisabled'));

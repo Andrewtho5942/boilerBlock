@@ -8,7 +8,6 @@ function checkRedirects (details) {
     if (details.method != 'GET') {
 		return {};
 	}
-console.log(details);
 		currentURL = details.initiator;
 
 	console.log("-- checking: " + currentURL);

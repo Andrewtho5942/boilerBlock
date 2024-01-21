@@ -61,7 +61,12 @@ input:checked +.slider:before {
     transform: translateX(41px);
 }
 
-
+#slider-label {
+    position:absolute;
+    top: 35px;
+    left:10px;
+    font-size:14px;
+}
 
 /*style the pop up page */
 #logo {
@@ -115,8 +120,6 @@ input:checked +.slider:before {
     position:relative;
     top:3px;
 }
-
-
 
 #settings {
     max-width: 80%; 

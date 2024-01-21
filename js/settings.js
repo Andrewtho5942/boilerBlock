@@ -8,7 +8,7 @@ function updateForms() {
 		var remove = document.getElementById("redirect" + i);
 		if (remove != null) {
 			remove.remove();
-		}	
+		}
 	}
 	elementArray = [];
 	for (var i = 0; i < redirects.length; i++) {
@@ -76,6 +76,10 @@ function createRedirect() {
 
 	var whitelistBox = document.getElementById("whitelist-form");
 	var whitelist = whitelistBox.value;
+	if (whitelist == "") {
+		whitelist = "No Whitelist";
+	}
+	if ((sourceURL != "") && (title != "")) {
 	redirects.push(new Redirect(
 		{
 		"title": title,
@@ -91,10 +95,10 @@ function createRedirect() {
 	updateForms();
 	//update local storage
 	storage.set({['redirects'] : redirects});
-}
+	} else {
+		//warn the user to fill out the title and list
 
-function cancelEdit() {
-	activeRedirect = null;
+	}
 }
 
 
