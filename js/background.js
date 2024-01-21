@@ -12,8 +12,9 @@ function checkRedirects (details) {
 
     for (var i = 0; i < redirects.length; i++) {
 		var r = redirects[i];
-		console.log("-- checking: " + currentURL + "includes " + r.title.sourceURL + " AND " + details.url + " DOESN'T INCLUDE " + r.title.sourceURL);
-		if (String(currentURL).includes(r.title.sourceURL) && !details.url.includes(r.title.sourceURL) && !details.url.includes(r.title.whitelist)) {
+		console.log("-- checking: " + currentURL + "includes " + r.title.sourceURL + " AND " + details.url + " DOESN'T INCLUDE " + r.title.sourceURL + ", ENABLED?: ", r.title.isEnabled);
+		if (String(currentURL).includes(r.title.sourceURL) && !details.url.includes(r.title.sourceURL)
+			&& !details.url.includes(r.title.whitelist) && r.isEnabled) {
 			console.log("blocking redirect from " + currentURL + " sourceURL: "+r.title.sourceURL);
 			lastBlockedURL = details.url;
 			return {cancel : true};
