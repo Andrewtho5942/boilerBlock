@@ -2,6 +2,7 @@ var storageArea = chrome.storage.local;
 var redirects = {};
 var currentURL = "";
 var lastBlockedURL = "";
+var ignoreList = ["", "about:blank"];
 
 function checkRedirects (details) {
     //only allow GET requests to be redirected
@@ -97,10 +98,11 @@ function closeTabByURL(url) {
   }
 
 function updateCurrentWebsite(url){
-	if(url != ""){
-		console.log("current website: "+ url);
-		currentURL = url;
-	}
+		if(!ignoreList.includes(url)){
+			console.log("current website: "+ url);
+			currentURL = url;
+		}
+
 	
 }
 
