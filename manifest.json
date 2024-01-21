@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Boiler Block",
-  "description": "Block redirects from any web site!",
+  "description": "Block redirects from any web page!",
   "version": "1.0.0",
   "icons": {
     "192": "images/logonew.png"
@@ -15,8 +15,7 @@
     "activeTab",
     "http://*/*",
     "https://*/*",
-    "notifications",
-    "windows"
+    "notifications"
   ], 
   "background": {
     "scripts": [
@@ -31,5 +30,11 @@
   "browser_action": {
     "default_title": "Redirector",
     "default_popup": "popup.html"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "andrewtho5942@gmail.com"
+    }
   }
+  
 }
