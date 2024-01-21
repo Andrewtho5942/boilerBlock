@@ -23,7 +23,12 @@ function updateForms() {
 		var editBtn = document.createElement("button");
 		var titleText = document.createElement("h3");
 
+		editBtn.setAttribute("id", "edit" + i);
 		deleteBtn.setAttribute("id", "delete" + i);
+
+		editBtn.addEventListener('click', function(){
+
+		});
 
 		deleteBtn.addEventListener('click', function() {
 			var index = Number(this.id.substring(6));
@@ -37,8 +42,8 @@ function updateForms() {
 			updateForms();
 		});
 
-		source.textContent = "Source URL: " + redirects[i].title.sourceURL;
-		whitelist.textContent = "Whitelist: " + redirects[i].title.whitelist;
+		source.textContent = "| Source URL: " + redirects[i].title.sourceURL;
+		whitelist.textContent = "| Whitelist: " + redirects[i].title.whitelist;
 		deleteBtn.textContent = "Delete";
 		editBtn.textContent = "Edit";
 		titleText.textContent = redirects[i].title.title;
@@ -120,7 +125,6 @@ function pageLoad(){
 		// Now, redirectsArray contains the array you retrieved from storage
 		console.log('Redirects Array from storage: ', redirects);
 	  });
-	  
 }
 
 pageLoad();

@@ -102,8 +102,6 @@ function updateCurrentWebsite(url){
 			console.log("current website: "+ url);
 			currentURL = url;
 		}
-
-	
 }
 
 // Listen for tab updates
