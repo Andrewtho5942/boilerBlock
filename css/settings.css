@@ -1,21 +1,29 @@
 body {
-    font-family: sans-serif;
+    font-family: 'Open Sans';
 }
 
 /*Style the home page*/
 .title {
     font-size:50px;
     color:#333;
-
+    font-weight:400;
 }
-.head2 {
-    color:#333;
-    font-size:30px;
+
+.textbox {
+    outline-color:rgb(196, 196, 196);
+}
+
+#biglogo {
+    width:10%;
+    min-width:100px;
+    margin-top:120px;
 }
 
 .centered {
+    width:100%;
     text-align:center;
     align-content:center;
+    background-color: rgb(237, 237, 237);
 }
 
 p {
@@ -34,6 +42,13 @@ p {
 
 }
 
+form {
+    display:block;
+    max-width:70%;
+    min-width:65%;
+    margin:auto;
+}
+
 .textbox {
     width:95%;
     margin-bottom:20px;
@@ -49,31 +64,33 @@ button {
     font-size: 15px;
     margin-top:10px;
     margin-bottom:10px;
+    text-align:center;
     margin:5px;
+    font-family:'Open Sans';
+    font-weight:700;
+    color:whitesmoke;
+    border:none;
+    border-radius:14px;
+    background-color: #333;
+    padding:10px;
+    margin:20px;
 }
+
 
 label {
     font-size:20px;
-
 }
 
-h2 {
+.head2 {
+    color:#333;
+    font-size:30px;
     padding:20px;
-    margin-bottom:20px;
+    padding-bottom:80px;
 }
-
 h1 {
-    margin-top:100px;
-
+    margin-top:20px;
 }
 
-.buttons {
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
-    justify-content: center;
-    align-items:center;
-}
 
 .redirects {
     max-width:100%;
@@ -83,6 +100,27 @@ h1 {
     align-content:center;
 }
 
-.block-btn {
-    display:inline;
+
+button:hover {
+    background-color:rgb(217, 166, 14);
+    cursor:auto;
+    box-shadow: 1px 1px 2px rgb(200, 200, 200);
+
+}
+
+#logo2 {
+    font-weight:700;
+    color:rgb(217, 166, 14);
+    font-size:52px;
+}
+
+#new {
+    max-width: 60%;
+    display:block;
+    margin:auto;
+}
+
+.btn-icon {
+    width:12px;
+    margin-right:5px;
 }
