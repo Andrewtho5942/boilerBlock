@@ -8,9 +8,7 @@ function checkRedirects (details) {
     if (details.method != 'GET') {
 		return {};
 	}
-		//currentURL = details.initiator;
 
-	
     for (var i = 0; i < redirects.length; i++) {
 		var r = redirects[i];
 		console.log("-- checking: " + currentURL + "includes " + r.title.sourceURL + " AND " + details.url + " DOESN'T INCLUDE " + r.title.sourceURL);
@@ -137,7 +135,12 @@ chrome.windows.onCreated.addListener(function(window) {
 		var r = redirects[i];
 		if (String(currentURL).includes(r.title.sourceURL)) {
 			//close the window
-			chrome.windows.remove(window.id);
+			chrome.windows.remove(window.id,function(){
+				if (chrome.runtime.lastError){
+					console.log("no window");
+				} 
+
+			});
 		}
 	}
   });
