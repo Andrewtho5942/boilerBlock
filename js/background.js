@@ -1,7 +1,7 @@
 var storageArea = chrome.storage.local;
 var redirects = {};
 var currentURL = "";
-
+var lastBlockedURL = "";
 
 function checkRedirects (details) {
     //only allow GET requests to be redirected
@@ -17,15 +17,7 @@ console.log(details);
 		
 		if (String(currentURL).includes(r.title.sourceURL) && !details.url.includes(r.title.sourceURL)) {
 			console.log("blocking redirect from " + currentURL + " sourceURL: "+r.title.sourceURL);
-			chrome.tabs.query({url:details.url},function(tabs){
-				if(tabs && tabs.length > 0) {
-					chrome.tabs.remove(tabs[0].id, function(){
-						console.log("block tab removed");
-					});
-				}else{
-					console.log("no tabs found to close on block");
-				}
-			});
+			lastBlockedURL = details.url;
 			return {cancel : true};
 		}
 
@@ -84,5 +76,20 @@ function updateIcon() {
 	});	
 }
 
+//Try to close the tabs after they are blocked
+/* 
+chrome.tabs.onCreated.addListener(function(tab) {
+	chrome.tabs.query({url:lastBlockedURL}, function(tabs){
+		if(tabs && tabs.length > 0 ) {
+			chrome.tabs.remove(tabs[0].id, function(){
+				console.log("tab blocked with URL " + lastBlockedURL);
+			});	
+		}else {
+			console.log("tab wasn't just blocked, do not close");
+		}
+
+	});
+});
+*/
 updateIcon();
 setUpRedirectListener();
