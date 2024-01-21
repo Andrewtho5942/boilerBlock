@@ -12,9 +12,10 @@ function checkRedirects (details) {
 
     for (var i = 0; i < redirects.length; i++) {
 		var r = redirects[i];
-		console.log("-- checking: " + currentURL + "includes " + r.title.sourceURL + " AND " + details.url + " DOESN'T INCLUDE " + r.title.sourceURL + ", ENABLED?: ", r.title.isEnabled);
+		//console.log("-- checking: " + currentURL + " includes " + r.title.sourceURL + " AND " + details.url + " DOESN'T INCLUDE " + r.title.whitelist + ", ENABLED?: ", !r.isEnabled);
+		//console.log(String(currentURL).includes(r.title.sourceURL) +", "+ !details.url.includes(r.title.sourceURL)+", "+!details.url.includes(r.title.whitelist) +", "+ !r.isEnabled);
 		if (String(currentURL).includes(r.title.sourceURL) && !details.url.includes(r.title.sourceURL)
-			&& !details.url.includes(r.title.whitelist) && r.isEnabled) {
+			&& !details.url.includes(r.title.whitelist) && !r.isEnabled) {
 			console.log("blocking redirect from " + currentURL + " sourceURL: "+r.title.sourceURL);
 			lastBlockedURL = details.url;
 			return {cancel : true};
@@ -34,6 +35,7 @@ function onChange (changes) {
 		if (changes.isDisabled.newValue == true) {
 			console.log('Disabling Listener');
 			chrome.webRequest.onBeforeRequest.removeListener(checkRedirects);
+			chrome.windows.onCreated.removeListener(blockWindow);
         } 
         //if the extension was enabled, set up the listeners
         else {
@@ -51,6 +53,7 @@ chrome.storage.onChanged.addListener(onChange);
 function setUpRedirectListener () {
 	//Unsubscribe all listeners to account for changes
     chrome.webRequest.onBeforeRequest.removeListener(checkRedirects); 
+	chrome.windows.onCreated.removeListener(blockWindow);
 
     storageArea.get({redirects:[]}, function(obj) {
 		redirects = obj.redirects;
@@ -62,9 +65,33 @@ function setUpRedirectListener () {
 			urls: ["https://*/*", "http://*/*"],
 			types : ["main_frame"]
 		};
+
 		chrome.webRequest.onBeforeRequest.addListener(checkRedirects, filter, ["blocking"]);
+
+		// Listen for window creation events
+		chrome.windows.onCreated.addListener(blockWindow);
 	});
 }
+function blockWindow(details) {
+
+		console.log("Window created:", details);
+	
+		for (var i = 0; i < redirects.length; i++) {
+			var r = redirects[i];
+			//console.log("-- checking: " + currentURL + " includes " + r.title.sourceURL + " AND " + details.url + " DOESN'T INCLUDE " + r.title.whitelist + ", ENABLED?: ", !r.isEnabled);
+			//console.log(String(currentURL).includes(r.title.sourceURL) +", "+ !details.url.includes(r.title.sourceURL)+", "+!details.url.includes(r.title.whitelist) +", "+ !r.isEnabled);
+			if (String(currentURL).includes(r.title.sourceURL) && !r.isEnabled) {
+				//close the window
+				chrome.windows.remove(details.id,function(){
+					console.log("lastError: " + chrome.runtime.lastError);
+					if (chrome.runtime.lastError){
+						console.log("no window");
+					} 
+				});
+			}
+		}
+	}
+
 
 //update icon badge
 function updateIcon() {
@@ -120,7 +147,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   // Listen for tab switches
   chrome.tabs.onActivated.addListener(function(activeInfo) {
 	chrome.tabs.get(activeInfo.tabId, function(tab) {
-	  updateCurrentWebsite(tab.url);
+		if (tab) {
+			updateCurrentWebsite(tab.url);
+		}
 	});
   });
 
@@ -131,24 +160,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
 	}
   });
 
-// Listen for window creation events
-chrome.windows.onCreated.addListener(function(window) {
-	console.log("Window created:", window);
-	
-	for (var i = 0; i < redirects.length; i++) {
-		var r = redirects[i];
-		if (String(currentURL).includes(r.title.sourceURL)) {
-			//close the window
-			chrome.windows.remove(window.id,function(){
-				console.log("lastError: "+chrome.runtime.lastError);
-				if (chrome.runtime.lastError){
-					console.log("no window");
-				} 
 
-			});
-		}
-	}
-  });
 
 updateIcon();
 setUpRedirectListener();
