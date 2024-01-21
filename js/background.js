@@ -28,6 +28,7 @@ console.log(details);
 }
 
 function onChange (changes) {
+	console.log("onChange: "+changes.redirects);
     //if the 'isDisabled' attribute was changed...
     if (changes.isDisabled) {
 		updateIcon();
@@ -38,9 +39,12 @@ function onChange (changes) {
         } 
         //if the extension was enabled, set up the listeners
         else {
-			console.log('Enabling Listener');
 			setUpRedirectListener();
 		}
+	} else if (changes.redirects) {
+		//redirects have been changed, redo the listeners
+		chrome.webRequest.onBeforeRequest.removeListener(checkRedirects);
+		setUpRedirectListener();
 	}
 }
 chrome.storage.onChanged.addListener(onChange);

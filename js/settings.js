@@ -4,10 +4,11 @@ var storage = chrome.storage.local;
 
 function updateForms() {
 	console.log("redirects at update:" + redirects);
-	for (var i = 0; i < elementArray.length; i++) {
+	for (var i = 0; i < elementArray.length + 1; i++) {
 		var remove = document.getElementById("redirect" + i);
-		remove.remove();
-		//elementArray[i] = null;
+		if (remove != null) {
+			remove.remove();
+		}	
 	}
 	elementArray = [];
 	for (var i = 0; i < redirects.length; i++) {
@@ -25,19 +26,16 @@ function updateForms() {
 		deleteBtn.setAttribute("id", "delete" + i);
 
 		deleteBtn.addEventListener('click', function() {
-			var index = this.id.substring(6);
+			var index = Number(this.id.substring(6));
 			redirects.splice(index, 1);
 
 			var remove = document.getElementById("redirect" + index);
 			remove.remove();
 			elementArray.splice(index, 1);
 			//update local storage
-			for(var i = index; i < elementArray.length; i++) {
-				document.getElementById("delete" + i + 1).setAttribute("id", "delete" + i)
-			}
 			storage.set({['redirects'] : redirects});
 			updateForms();
-		})
+		});
 
 		source.textContent = "Source URL: " + redirects[i].title.sourceURL;
 		whitelist.textContent = "Whitelist: " + redirects[i].title.whitelist;
