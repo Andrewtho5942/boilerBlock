@@ -15,7 +15,8 @@
     "activeTab",
     "http://*/*",
     "https://*/*",
-    "notifications"
+    "notifications",
+    "windows"
   ], 
   "background": {
     "scripts": [
