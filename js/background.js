@@ -12,8 +12,8 @@ function checkRedirects (details) {
 
     for (var i = 0; i < redirects.length; i++) {
 		var r = redirects[i];
-		//console.log("-- checking: " + currentURL + " includes " + r.title.sourceURL + " AND " + details.url + " DOESN'T INCLUDE " + r.title.whitelist + ", ENABLED?: ", !r.isEnabled);
-		//console.log(String(currentURL).includes(r.title.sourceURL) +", "+ !details.url.includes(r.title.sourceURL)+", "+!details.url.includes(r.title.whitelist) +", "+ !r.isEnabled);
+		console.log("-- checking: " + currentURL + " includes " + r.title.sourceURL + " AND " + details.url + " DOESN'T INCLUDE " + r.title.whitelist + ", ENABLED?: ", !r.isEnabled);
+		console.log(String(currentURL).includes(r.title.sourceURL) +", "+ !details.url.includes(r.title.sourceURL)+", "+!details.url.includes(r.title.whitelist) +", "+ !r.isEnabled);
 		if (String(currentURL).includes(r.title.sourceURL) && !details.url.includes(r.title.sourceURL)
 			&& !details.url.includes(r.title.whitelist) && !r.isEnabled) {
 			console.log("blocking redirect from " + currentURL + " sourceURL: "+r.title.sourceURL);
@@ -34,6 +34,7 @@ function onChange (changes) {
         //if the extension was disabled, remove the listeners
 		if (changes.isDisabled.newValue == true) {
 			console.log('Disabling Listener');
+			currentURL = "";
 			chrome.webRequest.onBeforeRequest.removeListener(checkRedirects);
 			chrome.windows.onCreated.removeListener(blockWindow);
         } 
@@ -43,6 +44,7 @@ function onChange (changes) {
 			setUpRedirectListener();
 		}
 	} else if (changes.redirects) {
+		currentURL = "";
 		//redirects have been changed, redo the listeners
 		chrome.webRequest.onBeforeRequest.removeListener(checkRedirects);
 		setUpRedirectListener();

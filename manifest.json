@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
-  "name": "Boiler Block",
+  "name": "BoilerBlock",
   "description": "Block redirects from any web page!",
-  "version": "1.0.0",
+  "version": "3.5.8",
   "icons": {
-    "192": "images/logonew.png"
+    "24": "images/logonew.png"
   },
   "permissions": [
     "webRequest",
@@ -33,7 +33,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "andrewtho5942@gmail.com"
+      "id": "andrewtho5942_id@gmail.com"
     }
   }
   
